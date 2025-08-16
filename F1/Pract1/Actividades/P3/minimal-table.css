@@ -1,0 +1,36 @@
+/* Estilos básicos para la tabla */
+table {
+    width: 100%; /* O un ancho fijo */
+    border-collapse: collapse; /* Fusiona los bordes de las celdas */
+    margin-bottom: 1em; /* Espacio inferior */
+}
+
+/* Estilos para las celdas de encabezado */
+th {
+    background-color: #f2f2f2; /* Color de fondo */
+    padding: 0.5em; /* Espaciado interno */
+    text-align: left; /* Alineación del texto */
+    font-weight: bold; /* Texto en negrita */
+}
+
+/* Estilos para las celdas de datos */
+td {
+    padding: 0.5em; /* Espaciado interno */
+    border-bottom: 1px solid #ddd; /* Borde inferior */
+    text-align: left; /* Alineación del texto */
+}
+
+/* Estilos para la fila de encabezado */
+tr:first-child {
+    border-top: 2px solid #ddd; /* Borde superior */
+}
+
+/* Estilos para filas */
+tr:nth-child(even) {
+    background-color: #f9f9f9; /* Color de fondo para filas pares */
+}
+
+/* Eliminar el borde inferior de la última fila */
+tr:last-child td {
+    border-bottom: none;
+}
