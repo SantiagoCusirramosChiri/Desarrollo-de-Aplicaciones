@@ -1,0 +1,21 @@
+table {
+    border-collapse: collapse;
+    width: 80%;
+    text-align: center;
+}
+th, td {
+    border: 1px solid rgba(28, 42, 163, 0.42);
+    padding: 10px;
+}
+th {
+    background-color: rgba(200, 255, 255, 0.82);
+}
+
+.green {
+    background-color: #21ff47;
+}
+
+.beige {
+    background-color: #f0d39e;
+    border: 3px solid #b56576;
+}
