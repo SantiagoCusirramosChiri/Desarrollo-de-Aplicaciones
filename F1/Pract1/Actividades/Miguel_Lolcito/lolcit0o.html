@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <title>Práctica 03 - Tablas</title>
+  <style>
+    table {
+      border-collapse: collapse;
+      margin: 20px auto;
+      width: 80%;
+    }
+    th, td {
+      border: 1px solid #333;
+      padding: 8px;
+      text-align: center;
+    }
+    th {
+      background-color: #f2f2f2;
+    }
+    h2 {
+      text-align: center;
+      margin-top: 40px;
+    }
+  </style>
+</head>
+<body>
+
+  <h1 style="text-align:center;">Práctica 03: Tablas</h1>
+
+  <!-- a) Tabla básica -->
+  <h2>Tabla N° 1: Tabla de datos a programar</h2>
+  <table>
+    <tr>
+      <td>Hola, soy tu primera celda.</td>
+      <td>Soy tu segunda celda.</td>
+      <td>Soy tu tercera celda.</td>
+      <td>Soy tu cuarta celda.</td>
+    </tr>
+    <tr>
+      <td>Segunda fila, primera celda.</td>
+      <td>Celda 2</td>
+      <td>Celda 3</td>
+      <td>Celda 4</td>
+    </tr>
+  </table>
+
+  <!-- b) Encabezados de tabla -->
+  <h2>Tabla N° 2: Tabla con encabezados</h2>
+  <table>
+    <tr>
+      <th>Nombre</th>
+      <th>Edad</th>
+      <th>Ciudad</th>
+    </tr>
+    <tr>
+      <td>Ana</td>
+      <td>20</td>
+      <td>Lima</td>
+    </tr>
+    <tr>
+      <td>Juan</td>
+      <td>22</td>
+      <td>Arequipa</td>
+    </tr>
+  </table>
+
+  <!-- c) Uso de colgroup -->
+  <h2>Tabla N° 3: Uso de &lt;colgroup&gt;</h2>
+  <table>
+    <colgroup>
+      <col> <!-- primera columna sin estilo -->
+      <col style="background-color: yellow"> <!-- segunda columna con estilo -->
+    </colgroup>
+    <tr>
+      <th>Dato 1</th>
+      <th>Dato 2</th>
+    </tr>
+    <tr>
+      <td>Calcuta</td>
+      <td>Pizza</td>
+    </tr>
+    <tr>
+      <td>Robots</td>
+      <td>Jazz</td>
+    </tr>
+  </table>
+
+  <!-- d) Horario con colgroup -->
+  <h2>Tabla N° 4: Horario con columnas resaltadas</h2>
+  <table>
+    <colgroup>
+      <col> <!-- columna 1 sin estilo -->
+      <col> <!-- columna 2 sin estilo -->
+      <col style="background-color:#97DB9A;"> <!-- martes -->
+      <col style="width:42px;"> <!-- miércoles -->
+      <col style="background-color:#97DB9A;"> <!-- jueves -->
+      <col style="background-color:#DCC48E; border:4px solid #C1437A;"> <!-- viernes -->
+      <col style="width:42px;"> <!-- sábado -->
+      <col style="width:42px;"> <!-- domingo -->
+    </colgroup>
+    <tr>
+      <th>Hora</th>
+      <th>Lunes</th>
+      <th>Martes</th>
+      <th>Miércoles</th>
+      <th>Jueves</th>
+      <th>Viernes</th>
+      <th>Sábado</th>
+      <th>Domingo</th>
+    </tr>
+    <tr>
+      <td>8:00 - 10:00</td>
+      <td>Libre</td>
+      <td>Alemán</td>
+      <td>Libre</td>
+      <td>Alemán</td>
+      <td>Holandés</td>
+      <td>Libre</td>
+      <td>Libre</td>
+    </tr>
+    <tr>
+      <td>10:00 - 12:00</td>
+      <td>Libre</td>
+      <td>Alemán</td>
+      <td>Libre</td>
+      <td>Alemán</td>
+      <td>Holandés</td>
+      <td>Libre</td>
+      <td>Libre</td>
+    </tr>
+  </table>
+
+  <!-- Extra: ejemplo con colspan y rowspan -->
+  <h2>Tabla N° 5: Uso de colspan y rowspan</h2>
+  <table>
+    <tr>
+      <th rowspan="2">Animal</th>
+      <th colspan="2">Características</th>
+    </tr>
+    <tr>
+      <th>Color</th>
+      <th>Tamaño</th>
+    </tr>
+    <tr>
+      <td>Perro</td>
+      <td>Marrón</td>
+      <td>Mediano</td>
+    </tr>
+    <tr>
+      <td>Gato</td>
+      <td>Negro</td>
+      <td>Pequeño</td>
+    </tr>
+    <tr>
+      <td>Caballo</td>
+      <td>Blanco</td>
+      <td>Grande</td>
+    </tr>
+  </table>
+
+</body>
+</html>
