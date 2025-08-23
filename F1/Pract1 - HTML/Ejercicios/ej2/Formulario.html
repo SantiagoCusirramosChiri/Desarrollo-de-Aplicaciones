@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Formulario - Registro</title>
+    <link rel="stylesheet" href="estilo.css">
+</head>
+
+<body>
+
+    <div class="form-container">
+        <h1>Registro de Usuario</h1>
+        <form id = "registro" novalidate>
+
+            <div class = "form-group">
+                <label for = "nombre">Nombre: </label>
+
+                <input type = "text" name = "nombre" id = "nombre" required
+                    minlength = "3" maxlength = "55"
+                       placeholder="Ingresa tu nombre BBesito"
+                       oninput="this.setCustomValidity('')"
+                       oninvalid="this.setCustomValidity('No seas payaso y pon tu nombre')"
+                >
+
+                <div class = "error">
+                    No seas payaso y pon tu nombre
+                </div>
+            </div>
+
+            <div class = "form-group">
+                <label for = "apellido">Apellido: </label>
+
+                <input type = "text" name = "apellido" id = "apellido" required
+                       minlength = "3" maxlength = "55"
+                       placeholder="Ingresa tu Apellido Papeto"
+                       oninput="this.setCustomValidity('')"
+                       oninvalid="this.setCustomValidity('Tu apellido... bestia :v')"
+                >
+
+                <div class = "error">
+                    Tu apellido... bestia :v
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label for="email">Correo electrónico:</label>
+                <input type="email" id="email" name="email" required
+                       oninput="this.setCustomValidity('')"
+                       oninvalid="this.setCustomValidity('Por favor, ingresa un correo electrónico válido')">
+                <div class="error">Mail, Outlook, lo que quieras papi</div>
+            </div>
+
+
+            <div class="form-group">
+                <label for = "password">password: </label>
+
+                <input type = "password" name = "password" id = "password" required
+                    minlength = "8" maxlength = "55"
+                    placeholder="Introduce your new password BBesita"
+                    oninput="this.setCustomValidity('')"
+                    oninvalid="this.setCustomValidity('Por favor, ingresa tu nombre contra')"
+                    >
+                <div class = "error">
+                    I need a password for your account, best :v
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label for="confirmarPassword">Confirmar contraseña:</label>
+                <input type="password" id="confirmarPassword" name="confirmarPassword" required
+                       minlength = "8" maxlength = "55"
+                       placeholder="Ingresa tu contra BB"
+                       oninput="validarPassword()">
+                <div class="error" id="errorPassword">Papeto, la misma P</div>
+            </div>
+
+            <div class="form-group">
+                <label for="telefono">Teléfono (opcional):</label>
+                <input type="tel" id="telefono" name="telefono"
+                       minlength = "9" maxlength = "11"
+                       pattern="[0-9]{9,11}$"
+                       inputmode="numeric"
+                       oninput="this.setCustomValidity('')"
+                oninvalid="this.setCustomValidity('Por favor, ingresa un número de 9 dígitos')">
+                <div class="error">Bro tu teléfono válido de 9 dígitos, al toq para doxearte</div>
+            </div>
+
+            <div class="form-group">
+                <label for="fechaNacimiento">Fecha de nacimiento:</label>
+                <input type="date" id="fechaNacimiento" name="fechaNacimiento" required
+                       min="1900-01-01" max="2025-12-31"
+                       oninput="this.setCustomValidity('')"
+                       oninvalid="this.setCustomValidity('Debes tener al menos 4 años para registrarte')">
+                <div class="error">Bro aqui somos legales, no queremos problemas legales :x</div>
+            </div>
+
+            <div class="form-group">
+                <label for="genero">Género:</label>
+                <select id="genero" name="genero" class="selector-genero" onchange="verificarGenero(this)">
+                    <option value="">-- Selecciona --</option>
+                    <option value="hombre">Hombre</option>
+                    <option value="mujer">Mujer</option>
+                    <option value="otro">Otro</option>
+                </select>
+                <div id="mensaje-genero" class="error">
+                    te falla verdad?
+                </div>
+            </div>
+
+
+            <div class="terms">
+                <input type="checkbox" name="terminos" id="terminos" required
+                oninvalid="this.setCustomValidity('Aceptas xq aceptas sino FUE')">
+                <label for = "terminos">Acepto los terminos y condiciones, sino ya se lo que me pasara. Una demanda del de la ostia</label>
+                <div class="error">Debes aceptar xq si, sino te cae una demanda :x</div>
+            </div>
+
+
+            <div class="form-group">
+                <button type = "submit">Registrarme</button>
+            </div>
+
+        </form>
+
+    </div>
+
+</body>
+</html>
