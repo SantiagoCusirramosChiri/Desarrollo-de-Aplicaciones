@@ -12,24 +12,20 @@ function validarPassword() {
     }
 }
 
-// function verificarGenero(select) {
-//     const mensaje = document.getElementById("mensaje-genero");
-//
-//     if(select.value == 'otro') {
-//         mensaje.style.display = "block";
-//         mensaje.classList.add('hidden');
-//     } else {
-//         mensaje.style.display = "none";
-//         mensaje.classList.remove('hidden');
-//     }
-// }
-
 function verificarGenero(select) {
-    const mensaje = document.getElementById('mensaje-genero');
-    mensaje.style.display = select.value === 'otro' ? 'block' : 'none';
+    const mensaje = document.getElementById("mensaje-genero");
+
+    if(select.value == 'otro') {
+        mensaje.style.display = "block";
+        mensaje.classList.add('hidden');
+    } else {
+        mensaje.style.display = "none";
+        mensaje.classList.remove('hidden');
+    }
 }
 
-document.addEventListener('DOMContentLoaded', function (){
+
+document.addEventListener('DOMContentLoaded', function () {
     document.getElementById('registroForm').addEventListener('submit', function (event) {
         if (!this.checkValidity()) {
             event.preventDefault();

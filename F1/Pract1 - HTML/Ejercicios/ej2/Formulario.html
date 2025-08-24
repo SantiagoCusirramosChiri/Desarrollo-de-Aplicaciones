@@ -50,7 +50,6 @@
                 <div class="error">Mail, Outlook, lo que quieras papi</div>
             </div>
 
-
             <div class="form-group">
                 <label for = "password">password: </label>
 
@@ -96,17 +95,18 @@
 
             <div class="form-group">
                 <label for="genero">Género:</label>
-                <select id="genero" name="genero" class="selector-genero" onchange="verificarGenero(this)">
+                <select id="genero" name="genero" class="selector-genero" required
+                        onchange="verificarGenero(this)">
                     <option value="">-- Selecciona --</option>
                     <option value="hombre">Hombre</option>
                     <option value="mujer">Mujer</option>
                     <option value="otro">Otro</option>
                 </select>
-                <div id="mensaje-genero" class="error">
+                <div class="error">Por favor, selecciona tu género</div>
+                <div id="mensaje-genero" class="mensaje-especial">
                     te falla verdad?
                 </div>
             </div>
-
 
             <div class="terms">
                 <input type="checkbox" name="terminos" id="terminos" required
@@ -115,7 +115,6 @@
                 <div class="error">Debes aceptar xq si, sino te cae una demanda :x</div>
             </div>
 
-
             <div class="form-group">
                 <button type = "submit">Registrarme</button>
             </div>
@@ -123,6 +122,6 @@
         </form>
 
     </div>
-
+    <script src="script.js"></script>
 </body>
 </html>
