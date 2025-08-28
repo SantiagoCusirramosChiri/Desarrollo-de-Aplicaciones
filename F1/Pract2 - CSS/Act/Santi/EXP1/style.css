@@ -1,0 +1,51 @@
+header {
+    background-color: #a6b8ff;
+    text-align: center;
+    padding: 20px;
+}
+
+h1{
+    color: navy;
+}
+
+nav a {
+    margin: 10px;
+    color: darkred;
+    text-decoration: firebrick;
+}
+
+h2 {
+    color: darkred;
+}
+
+main{
+    padding: 20px;
+}
+
+section{
+    margin-bottom: 20px;
+}
+
+section p {
+    font-size: 16px;
+    line-height: 1.5;
+}
+
+article {
+    border: 1px solid #ccc;
+    padding: 10px;
+    margin-bottom: 20px;
+}
+
+article h3 {
+    color: darkblue;
+}
+
+article p {
+    font-size: 15px;
+}
+
+aside {
+    background-color: #f4f4f4;
+    padding: 10px;
+}
