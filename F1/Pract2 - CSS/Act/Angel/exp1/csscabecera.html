@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>CSS en cabecera</title>
+	<meta charset="utf-8">
+	<style>
+		body{
+			font-family: Open Sans, sans-serif;
+			background-color: #955a0e;
+		}
+
+		.titulo{
+			width: 100%;
+			text-align: center;
+		}
+
+		.titulo p{
+			font-size: 35px;
+			font-weight: 400px;
+			color: #ffffff;
+		}
+
+		form{
+			background-color: #ffffff;
+			color: #999999;
+			font-size: 18px;
+			border-radius: 3px;
+			padding: 20px;
+			margin: auto;
+			width: 400px;
+		}
+
+		label{
+			display: inline-block;
+			padding: 10px 0px;
+		}
+
+		input, textarea{
+			border: 0px;
+			outline: none;
+			width: 375px;
+			color: #636363
+		}
+
+		textarea{
+			min-width: 375px;
+			max-width: 375px;
+			min-height: 100px;
+			max-height: 300px;
+		}
+
+		.box{
+			padding: 10px;
+			border: solid 1px #cccccc;
+		}
+
+		.box:focus{
+			border: solid 2px #0570a6;
+		}
+
+		.boton{
+			border: 0px;
+			border-radius: 3px;
+			display: inline-block;
+			padding: 20px 15px;
+			font-size: 18px;
+			margin-top: 20px;
+			cursor: pointer;
+		}
+
+		.boton-verde{
+			color: white;
+			background-color: #3cc93f;
+		}
+
+		.boton-verde:hover{
+			background-color: #30a432;
+		}
+
+		.boton-verde:active{
+			background-color: #cddc39;
+		}
+
+		.checkbox:hover{
+			border: solid 2px #0570a6;
+			cursor: pointer;
+		}
+	</style>
+
+</head>
+<body>
+	<div class="titulo">
+		<p>Formulario de contacto</p>
+	</div>
+
+	<form action="">
+		<label for="txtNombre">Nombre</label><br>
+		<input type="text" name="txtNombre" class="box" placeholder="&#128100; Ingrese un nombre"><br>
+
+		<label for="txtEmail">Email</label><br>
+		<input type="email" name="txtEmail" class="box" placeholder="&#64; Ingrese un correo"><br>
+
+		<label for="txtAsunto">Asunto</label><br>
+		<input type="text" name="txtAsunto" class="box" placeholder="Escribe un asunto"><br>
+
+		<label for="txtMensaje">Mensaje</label><br>
+		<textarea name="txtMensaje" class="box" placeholder="Ingrese un mensaje"></textarea>
+		<center>
+			<input type="submit" name="btnEnviar" class="boton-verde" value="Enviar">
+		</center>
+		
+	</form>
+
+</body>
+</html>
