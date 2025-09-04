@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html>
+<head>
+<style>
+.flex-container {
+  display: flex;
+  align-items: stretch;
+  background-color: lightblue;
+}
+
+.flex-container>div {
+  background-color: green;
+  color: white;
+  width: 100px;
+  margin: 10px;
+  text-align: center;
+  line-height: 75px;
+  font-size: 30px;
+}
+</style>
+</head>
+<body>
+
+<h1>probando flex-shrink</h1>
+
+<p>el ancho del tercer item se mantiene igual:</p>
+
+<div class="flex-container">
+  <div>c</div>
+  <div>h</div>
+  <div style="flex-shrink: 0">iiiiiiiii</div>
+  <div>s</div>
+  <div>t</div>
+  <div>e</div>
+  <div>m</div>
+  <div>a</div>
+  <div>s</div>
+</div>
+
+</body>
+</html>

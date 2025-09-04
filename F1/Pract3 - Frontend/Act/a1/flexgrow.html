@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html>
+<head>
+<style>
+.flex-container {
+  display: flex;
+  align-items: stretch;
+  background-color: silver;
+}
+
+.flex-container > div {
+  background-color: gold;
+  color: black;
+  margin: 10px;
+  text-align: center;
+  line-height: 75px;
+  font-size: 30px;
+}
+</style>
+</head>
+<body>
+
+<h1>probando flex-grow</h1>
+
+<p>el tercer elemento tendrá mayor longitud que los demás:</p>
+
+<div class="flex-container">
+  <div style="flex-grow: 1">iti</div>
+  <div style="flex-grow: 1">gdi</div>
+  <div style="flex-grow: 8">siaaaaaaaaaaaaaaaaaaaaaa</div>
+</div>
+
+</body>
+</html>
