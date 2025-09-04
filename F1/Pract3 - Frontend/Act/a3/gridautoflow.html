@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html>
+<head>
+<style>
+.item3 { grid-column: auto / span 2; }
+
+.grid-container {
+  display: grid;
+  grid-template-columns: auto auto auto;
+  grid-template-rows: auto auto;
+  grid-gap: 10px;
+  background-color: silver;
+  padding: 10px;
+}
+
+.grid-container > div {
+  background-color: gold;
+  text-align: center;
+  padding: 20px 0;
+  font-size: 30px;
+}
+</style>
+</head>
+<body>
+
+<h1>la propiedad grid-auto-flow</h1>
+
+<p>controla cómo los items ubicados automaticamente son insertados en el grid</p>
+
+<h2>grid-auto-flow: fila</h2>
+<div class="grid-container" style="grid-auto-flow: row;">
+  <div class="item1">a</div>
+  <div class="item2">b</div>
+  <div class="item3">c</div>
+  <div class="item4">d</div>
+</div>
+<h2>grid-auto-flow: fila dense</h2>
+<div class="grid-container" style="grid-auto-flow: row dense;">
+  <div class="item1">e</div>
+  <div class="item2">f</div>
+  <div class="item3">g</div>
+  <div class="item4">h</div>
+</div>
+
+</body>
+</html>

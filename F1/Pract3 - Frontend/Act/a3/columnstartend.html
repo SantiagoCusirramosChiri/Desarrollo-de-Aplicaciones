@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html>
+<head>
+<style>
+.grid-container {
+  display: grid;
+  grid-template-columns: auto auto auto;
+  gap: 10px;
+  background-color: green;
+  padding: 10px;
+}
+
+.grid-container > div {
+  background-color: lightgreen;
+  text-align: center;
+  padding: 10px;
+  font-size: 30px;
+}
+
+.item1 {
+  grid-column-start: 1;
+  grid-column-end: 3;
+}
+</style>
+</head>
+<body>
+
+<h1>propiedades grid-column-start y grid-column-end</h1>
+
+<p>con estas propiedades se especifica en donde comienza y finaliza un item grid</p>
+
+<p>el primer item grid comienza en la columna 1 y termina en la columna 3:</p>
+
+<div class="grid-container">
+  <div class="item1">devooooooooooooops</div>
+  <div class="item2">big data</div>
+  <div class="item3">fullstack</div>  
+  <div class="item4">a</div>
+  <div class="item5">b</div>
+  <div class="item6">c</div>
+  <div class="item7">d</div>
+  <div class="item8">e</div>  
+</div>
+
+</body>
+</html>
