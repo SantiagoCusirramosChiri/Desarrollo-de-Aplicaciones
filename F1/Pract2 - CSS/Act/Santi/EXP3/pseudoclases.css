@@ -1,0 +1,50 @@
+/* 1. Enlaces no visitados */
+a:link {
+    color: blue;
+}
+
+/* 2. Enlaces visitados */
+a:visited {
+    color: purple;
+}
+
+/* 3. Enlace al pasar el cursor */
+a:hover {
+    text-decoration: underline;
+    color: darkred;
+}
+
+/* 4. Enlace activo (clic presionado) */
+a:active {
+    color: green;
+}
+
+/* 5. Primer hijo de un contenedor */
+section p:first-child {
+    font-weight: bold;
+}
+
+/* 6. Último hijo */
+section p:last-child {
+    font-style: italic;
+}
+
+/* 7. Elemento en foco (ej: input) */
+input:focus {
+    background-color: lightyellow;
+}
+
+/* 8. Nth-child (pares) */
+li:nth-child(even) {
+    background-color: #eee;
+}
+
+/* 9. Nth-child (impares) */
+li:nth-child(odd) {
+    background-color: #ddd;
+}
+
+/* 10. Negación con :not() */
+p:not(.info) {
+    color: darkblue;
+}

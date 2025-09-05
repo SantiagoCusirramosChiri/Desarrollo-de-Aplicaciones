@@ -1,0 +1,38 @@
+/* 1. Primera letra */
+p::first-letter {
+    font-size: 2em;
+    color: red;
+}
+
+/* 2. Primera línea */
+p::first-line {
+    font-weight: bold;
+}
+
+/* 3. Selección de texto */
+::selection {
+    background-color: yellow;
+    color: black;
+}
+
+/* 4. Agregar contenido antes */
+h2::before {
+    content: "📰 ";
+}
+
+/* 5. Agregar contenido después */
+h2::after {
+    content: " ✅";
+}
+
+/* 6. Marcador de lista */
+li::marker {
+    color: green;
+    font-size: 20px;
+}
+
+/* 7. Placeholder de input */
+input::placeholder {
+    color: gray;
+    font-style: italic;
+}

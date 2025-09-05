@@ -1,43 +1,37 @@
-body {
-    font-family: Arial, sans-serif;
-    margin: 0;
-    padding: 0;
-}
-
-header {
+#encabezado {
     background-color: lightblue;
     padding: 20px;
     text-align: center;
 }
 
-h1 {
-    color: #d45dff;
+#titulo {
+    color: navy;
 }
 
-nav a {
+#menu a {
     margin: 10px;
     color: darkgreen;
     text-decoration: none;
 }
 
-section {
-    background-color: #441d1d;
+#noticias {
+    background-color: #f9f9f9;
     padding: 15px;
     margin: 10px;
 }
 
-article {
-    border: 1px solid #ff0000;
+#articulo {
+    border: 1px solid #ccc;
     padding: 10px;
     margin: 10px;
 }
 
-aside {
-    background-color: #475e2e;
+#lateral {
+    background-color: #eee;
     padding: 10px;
 }
 
-footer {
+#pie {
     background-color: #333;
     color: white;
     text-align: center;

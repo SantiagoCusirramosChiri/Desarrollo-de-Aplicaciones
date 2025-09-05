@@ -1,0 +1,24 @@
+/* Estilo para todos los enlaces que abren en nueva pestaña */
+a[target="_blank"] {
+    color: red;
+    font-weight: bold;
+}
+
+/* Estilo para inputs de texto */
+input[type="text"] {
+    border: 2px solid blue;
+    padding: 5px;
+}
+
+/* Estilo para inputs de email */
+input[type="email"] {
+    border: 2px solid green;
+    padding: 5px;
+}
+
+/* Estilo para elementos con atributo personalizado */
+[data-tipo="noticia"] {
+    background-color: #f9f9f9;
+    border-left: 4px solid orange;
+    padding: 10px;
+}
