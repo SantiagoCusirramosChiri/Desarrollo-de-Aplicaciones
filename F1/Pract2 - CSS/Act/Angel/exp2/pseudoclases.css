@@ -1,0 +1,41 @@
+a:link {
+    color: rgb(39, 146, 0);
+}
+
+a:visited {
+    color: rgb(152, 0, 0);
+}
+
+a:hover {
+    color: rgb(232, 159, 23);
+    text-decoration: underline;
+}
+
+a:active {
+    color: rgb(151, 14, 42);
+}
+
+section p:first-child {
+    background-color: #f0f8ff;
+}
+
+article p:last-child {
+    font-weight: bold;
+}
+
+p:nth-child(odd) {
+    background-color: #eaf7ea;
+}
+
+p:nth-child(even) {
+    background-color: #fdf2e9;
+}
+
+h1:focus {
+    outline: 3px solid rgb(255, 0, 0);
+}
+
+section:hover {
+    background-color: #f9f9f9;
+    border-left: 5px solid #0077b6;
+}
