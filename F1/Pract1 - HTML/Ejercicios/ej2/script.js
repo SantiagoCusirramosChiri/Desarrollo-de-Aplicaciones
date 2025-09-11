@@ -39,7 +39,7 @@ document.addEventListener('DOMContentLoaded', function () {
 
         } else {
             event.preventDefault();
-            alert("Formulario valido, eso creo, no se que acabo de codear ._.")
+            alert("Formulario valido, eso creo, no se que acabo de codear ._. Directamente no se si funciona")
         }
     });
 })

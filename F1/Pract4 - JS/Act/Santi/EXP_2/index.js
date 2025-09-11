@@ -11,8 +11,10 @@ if(true) {
 
 // ----------- parte B
 
-console.log(x === undefined);
+
 x = 3;
+console.log(x === undefined);
+
 
 var myvar = 'valor random, o indefinido';
 
@@ -20,3 +22,8 @@ var myvar = 'valor random, o indefinido';
     console.log(myvar);
     var myvar = 'valor local';
 })();
+
+var answer = 42;
+answer = 'Gracias por todo desgracia humana :v ';
+
+console.log(answer);
