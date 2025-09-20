@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <title>ejercicio3</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <div class="container">
+    <h2>Ejercicio 3: Generador de Contraseña Segura</h2>
+
+    <label>Longitud:</label><br>
+    <input type="number" id="longitud" min="4" max="50" value="12"><br> <!--minimo 4 caracteres y maximo 50, 12 default-->
+
+    <div class="opciones">
+      <label><input type="checkbox" id="mayus" checked> Incluir Mayúsculas</label><br>
+      <label><input type="checkbox" id="minus" checked> Incluir Minúsculas</label><br>
+      <label><input type="checkbox" id="numeros" checked> Incluir Números</label><br>
+      <label><input type="checkbox" id="simbolos" checked> Incluir Símbolos</label><br>
+    </div>
+
+    <button onclick="generar()">Generar Contraseña</button>
+
+    <div class="resultado">
+      <p id="contrasena"></p>
+    </div>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>
