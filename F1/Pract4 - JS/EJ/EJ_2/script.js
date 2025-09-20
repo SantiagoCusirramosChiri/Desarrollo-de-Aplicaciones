@@ -1,6 +1,6 @@
-const inputTemp = document.getElementById("inputTemp");
-const inputUnit = document.getElementById("inputUnit");
-const outputTemp = document.getElementById("outputTemp");
+const inputTemp = document.getElementById("tempInput");
+const inputUnit = document.getElementById("unitInput");
+const outputTemp = document.getElementById("tempOutput");
 const outputUnit = document.getElementById("unitOutput");
 const swapBtn = document.getElementById("swap");
 
@@ -9,7 +9,7 @@ function convertTemperature(value, fromUnit, toUnit) {
         return "";
     }
 
-    let celseius;
+    let celsius;
 
     switch (fromUnit) {
         case "C":
