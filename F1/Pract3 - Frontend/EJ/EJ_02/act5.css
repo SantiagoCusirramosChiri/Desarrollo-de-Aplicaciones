@@ -71,7 +71,7 @@ body {
   }
 }
 
-/* Menos de 480px → todo en 1 columna */
+
 @media (max-width: 480px) {
   .container {
     flex-direction: column;
