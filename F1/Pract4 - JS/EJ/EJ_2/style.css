@@ -6,11 +6,12 @@
 }
 
 body {
-    background-color: #0031ff;
+    background-color: #abfff2;
     height: 100vh;
     display: flex;
     justify-content: center;
     align-items: center;
+    flex-direction: column;
 }
 
 .converter{
@@ -18,26 +19,29 @@ body {
     justify-content: center;
     align-items: center;
     gap: 20px;
-    background: #00d4ff;
+    background: #68ffbc;
     padding: 10px;
     border-radius: 20px;
-    box-shadow: 10px 10px 10px #000000;
+    box-shadow: 10px 10px 10px #2637a2;
 }
 
 input, select{
     padding: 10px;
     border-radius: 10px;
-    border: 2px solid #d76464;
+    border: 2px solid #af6262;
+    outline: none;
+    display: flex;
 }
 
 input:focus, select:focus {
-    border-color: #6c63ff;
-    box-shadow: 0 0 5px rgba(108, 99, 255, 0.5);
+    border-color: #0c0952;
+    box-shadow: 0 0 5px rgb(0, 0, 0);
+    display: flex;
 }
 
 button#swap {
-    background: rgba(28, 42, 163, 0.42);
-    color: #fff;
+    background: rgba(255, 255, 255, 0.42);
+    color: #000000;
     border-radius: 10%;
     padding: 10px 14px;
     cursor: pointer;
