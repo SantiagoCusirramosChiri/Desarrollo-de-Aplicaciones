@@ -1,0 +1,18 @@
+
+$C1: #961c98;
+$C2: #e1590b;
+$padding: 10px;
+$border: 10px;
+
+@function px-mult($px,$num) {
+  @return $px*$num;
+}
+
+.button {
+  padding: px-mult($padding, 2);
+  background-color: $C1;
+  color: $C2;
+  border: none;
+  border-radius: $border;
+  cursor: pointer;
+}
