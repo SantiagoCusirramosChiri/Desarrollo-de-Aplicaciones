@@ -1,0 +1,104 @@
+// Variables
+$color-primary: #6a5acd;
+$color-accent: #87cefa;
+$color-danger: #f08080;
+$font-main: 'Verdana', sans-serif;
+$radius: 8px;
+$spacing: 1rem;
+
+// Función para opacidad progresiva
+@function opacity-level($step, $total) {
+  @return $step / $total;
+}
+
+// Mixins
+@mixin button-style($bg) {
+  background-color: $bg;
+  border: none;
+  padding: 0.6rem 1.2rem;
+  border-radius: $radius;
+  color: white;
+  cursor: pointer;
+  transition: 0.3s;
+  &:hover { opacity: 0.8; }
+  &:disabled { background-color: gray; cursor: not-allowed; }
+}
+
+body {
+  font-family: $font-main;
+  margin: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+
+  // Fondo inicial (será sobrescrito por JS para dinámica, pero con propiedades base para centrado)
+  // Se remueve el linear-gradient inicial para evitar conflictos con JS; JS lo maneja dinámicamente
+  // background: linear-gradient(rgba(0,0,0,0.7), rgba(0,0,0,0.7)), 
+  // url('snk.webp') center/cover no-repeat fixed;
+  // background: url('fondo.png') center/cover no-repeat;
+  // background: url('https://wallpapers.com/images/hd/waifu-xfvvhbymwzp7io38.jpg') center/cover no-repeat;
+  
+  // Propiedades base para el fondo (centradas y responsive)
+  background-size: cover;
+  background-position: center center; // Asegurar centrado explícito en X e Y
+  background-attachment: scroll; // Cambiado a scroll para mejor centrado en dispositivos móviles y evitar "salto" en fixed
+  background-repeat: no-repeat;
+  position: relative;
+  overflow: auto;
+
+  // Transición suave para cambios dinámicos desde JS
+  transition: background 0.5s ease-in-out;
+
+  .body-clear{
+    &::before{
+      opacity: 0.3 !important;
+    }
+  }
+}
+
+// Contenedor
+.quiz-container {
+  background: white;
+  border-radius: $radius;
+  padding: 2*$spacing;
+  box-shadow: 0 0 15px rgba(0,0,0,0.2);
+  width: 90%;
+  max-width: 600px;
+  text-align: center;
+  z-index: 1;
+  position: relative;
+
+  h1 {
+    margin-top: 0;
+    color: $color-primary;
+  }
+
+  #progress {
+    margin-bottom: $spacing;
+    font-weight: bold;
+    color: $color-accent;
+  }
+
+  #question {
+    font-size: 1.2em;
+    margin: $spacing 0;
+    color: #333;
+  }
+
+  #options {
+    margin: $spacing 0;
+
+    button {
+      display: block;
+      width: 100%;
+      margin-bottom: 0.5rem;
+      @include button-style($color-primary);
+    }
+  }
+
+  #next {
+    @include button-style($color-accent);
+    margin-top: $spacing;
+  }
+}

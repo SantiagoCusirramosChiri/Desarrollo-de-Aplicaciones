@@ -1,0 +1,30 @@
+#heroCarousel {
+    max-height: 500px;
+    overflow: hidden;
+}
+
+#heroCarousel .carousel-inner {
+    max-height: 500px;
+}
+
+#heroCarousel .carousel-item {
+    max-height: 500px;
+}
+
+#heroCarousel .carousel-item img {
+    height: 500px;
+    object-fit: cover;
+    width: 100%;
+}
+
+#heroCarousel .hero-section {
+    min-height: 500px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+#heroCarousel .carousel-item .container {
+    height: 50px;
+    padding: 20px;
+}

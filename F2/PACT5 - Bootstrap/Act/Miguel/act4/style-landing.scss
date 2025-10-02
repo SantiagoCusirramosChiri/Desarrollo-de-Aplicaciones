@@ -1,0 +1,41 @@
+
+$color-bg: #2c2f48;
+$color-accent: #6a5acd;
+$color-light: #f5f5f5;
+$color-danger: #f08080;
+$transition: all 0.3s ease;
+
+@mixin btn-custom($bg) {
+  background-color: $bg;
+  border: none;
+  color: white;
+  border-radius: 8px;
+  padding: 0.7rem 1.4rem;
+  transition: $transition;
+  &:hover { opacity: 0.9; }
+}
+
+.hero {
+  background: linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.6)), url("https://via.placeholder.com/1920x600") center/cover no-repeat;
+  min-height: 70vh;
+  .btn-accent {
+    @include btn-custom($color-accent);
+  }
+}
+
+.custom-navbar {
+  background-color: $color-bg;
+  .nav-link {
+    transition: $transition;
+    &:hover { background-color: $color-accent; border-radius: 6px; }
+  }
+}
+
+.card {
+  border-radius: 10px;
+  .btn-accent { @include btn-custom($color-accent); }
+}
+
+.custom-footer {
+  background-color: $color-bg;
+}
