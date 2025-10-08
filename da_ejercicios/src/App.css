@@ -36,18 +36,3 @@
     transform: rotate(360deg);
   }
 }
-
-/* -------------------------------------------------------- */
-.mi-contenedor {
-  background-color: #f0f8ff;
-  padding: 20px;
-  border-radius: 10px;
-  text-align: center;
-  margin: 20px;
-}
-
-.mi-imagen {
-  border: 2px solid #007bff;
-  border-radius: 8px;
-  margin: 10px 0;
-}

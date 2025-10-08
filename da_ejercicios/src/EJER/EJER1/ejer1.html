@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Rezando para entender</title>
+
+    <style>
+        body{
+            background-color: #3da6e7;
+        }
+    </style>
+
+    <script crossorigin src="https://unpkg.com/react@18/umd/react.development.js"></script>
+    <script crossorigin src="https://unpkg.com/react-dom@18/umd/react-dom.development.js"></script>
+    <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+</head>
+
+<body>
+
+<div id="root"></div>
+
+
+<script type="text/babel">
+    class App extends React.Component {
+        render() {
+            return(
+                <>
+                    <h1>¡Hola Mundo desde React CDN!</h1>
+                    <Nombre brand="Sasas" feel="jaja"/>
+
+                    <h2>Who lives in my garage?</h2>
+                    <Marca brand="Ford" color="celeste"/>
+                    <Marca brand="BMW" color="verde"/>
+                    <Marca brand="Nissan" color="negro"/>
+                </>
+            );
+        }
+    }
+
+    function Nombre(props) {
+        return (
+            <h2>I am a {props.brand}! y me hacer  {props.feel} :p</h2>
+        );
+    }
+
+    function Marca(props) {
+        return (
+            <h2>I am a {props.brand}! and my color is {props.color} :V</h2>
+        );
+    }
+
+    ReactDOM.render(<App />, document.getElementById('root'));
+</script>
+
+</body>
+</html>

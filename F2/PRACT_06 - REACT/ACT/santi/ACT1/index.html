@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mi Primera App React</title>
+    <!-- Los 3 enlaces CDN necesarios -->
+    <script crossorigin src="https://unpkg.com/react@17/umd/react.development.js"></script>
+    <script crossorigin src="https://unpkg.com/react-dom@17/umd/react-dom.development.js"></script>
+    <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+</head>
+<body>
+    <!-- Contenedor donde React mostrará la aplicación -->
+    <div id="root"></div>
+
+    <!-- Código React -->
+    <script type="text/babel">
+        // 2. Definir componente de clase App
+        class App extends React.Component {
+            render() {
+                return <h1>¡Hola Mundo desde React!</h1>;
+            }
+        }
+
+        // 3. Renderizar el componente en el DOM
+        ReactDOM.render(<App />, document.getElementById('root'));
+    </script>
+</body>
+</html>
