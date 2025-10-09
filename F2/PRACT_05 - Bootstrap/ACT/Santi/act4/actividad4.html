@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Polistation New - Tienda Virtual</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link href="style-landing.css" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+  <!-- Encabezado -->
+  <nav class="navbar navbar-expand-lg custom-navbar">
+    <div class="container">
+      <a class="navbar-brand text-white fw-bold" href="#">Polistation New</a>
+      <button class="navbar-toggler text-white" type="button" data-bs-toggle="collapse" data-bs-target="#menu">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="menu">
+        <ul class="navbar-nav me-auto">
+          <li class="nav-item"><a class="nav-link text-white" href="#">Inicio</a></li>
+          <li class="nav-item"><a class="nav-link text-white" href="#juegos">Tienda</a></li>
+          <li class="nav-item"><a class="nav-link text-white" href="#testimonios">Testimonios</a></li>
+        </ul>
+        <div class="d-flex">
+          <a href="#" class="nav-link text-white me-3"><i class="fa-solid fa-cart-shopping"></i></a>
+          <a href="#" class="nav-link text-white"><i class="fa-solid fa-user"></i></a>
+        </div>
+      </div>
+    </div>
+  </nav>
+
+  <!-- Hero -->
+  <section class="hero d-flex align-items-center text-center text-white">
+    <div class="container">
+      <h1 class="display-4 fw-bold">Bienvenido a Polistation New</h1>
+      <p class="lead">La tienda virtual más gamer y menos seria del mercado 🎮</p>
+      <a href="#juegos" class="btn btn-lg btn-accent mt-3">Explorar Juegos</a>
+    </div>
+  </section>
+
+  <!-- Características -->
+  <section class="py-5 bg-light">
+    <div class="container text-center">
+      <div class="row">
+        <div class="col-md-4">
+          <i class="fa-solid fa-gamepad fa-3x mb-3"></i>
+          <h4>Juegos Baratos</h4>
+          <p>Precios que parecen chiste, pero son reales.</p>
+        </div>
+        <div class="col-md-4">
+          <i class="fa-solid fa-gift fa-3x mb-3"></i>
+          <h4>Promos Locas</h4>
+          <p>Compra uno, ríete dos veces.</p>
+        </div>
+        <div class="col-md-4">
+          <i class="fa-solid fa-headset fa-3x mb-3"></i>
+          <h4>Soporte 24/7</h4>
+          <p>Con más paciencia que tu mamá cuando jugabas.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Tienda de Juegos -->
+  <section id="juegos" class="py-5">
+    <div class="container">
+      <h2 class="text-center mb-5">Nuestros Juegos</h2>
+      <div class="row g-4">
+        
+        <div class="col-md-4">
+          <div class="card h-100 shadow">
+            <img src="https://i.ytimg.com/vi/Puybbb8ebJ8/hq720.jpg?sqp=-oaymwEhCK4FEIIDSFryq4qpAxMIARUAAAAAGAElAADIQj0AgKJD&rs=AOn4CLDfMIUlnLLBj2FzFPK_ys4X-ITcbw"
+                 class="card-img-top" alt="Juego">
+            <div class="card-body">
+              <h5 class="card-title">FIFA Trucho 25</h5>
+              <p class="card-text">Corre hasta en calculadoras.</p>
+              <button class="btn btn-accent w-100">Comprar</button>
+            </div>
+          </div>
+        </div>
+
+        <div class="col-md-4">
+          <div class="card h-100 shadow">
+            <img src="https://static0.srcdn.com/wordpress/wp-content/uploads/2022/07/10-Hilarious-Memes-That-Sum-Up-The-Call-Of-Duty-Games.jpg"
+                 class="card-img-top" alt="Juego">
+            <div class="card-body">
+              <h5 class="card-title">Call of Dooty</h5>
+              <p class="card-text">Balas infinitas y gráficos de ensueño.</p>
+              <button class="btn btn-accent w-100">Comprar</button>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-4">
+          <div class="card h-100 shadow">
+            <img src="https://i.ytimg.com/vi/L0MgeqgyNUQ/hq720.jpg?sqp=-oaymwEhCK4FEIIDSFryq4qpAxMIARUAAAAAGAElAADIQj0AgKJD&rs=AOn4CLCyblnz5FF4i3Vvvu3RqLU30ZO50A"
+                 class="card-img-top" alt="Juego">
+            <div class="card-body">
+              <h5 class="card-title">Grand Theft Auto San Pepe</h5>
+              <p class="card-text">Las calles nunca fueron tan cuadradas.</p>
+              <button class="btn btn-accent w-100">Comprar</button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Testimonios -->
+  <section id="testimonios" class="py-5 bg-light">
+    <div class="container">
+      <h2 class="text-center mb-5">Lo que dicen los jugadores</h2>
+      <div class="row g-4">
+        <div class="col-md-4">
+          <div class="p-4 border rounded text-center">
+            <p>"Me compré un juego y todavía estoy viendo si es legal, pero me divierto 😂"</p>
+            <strong>- Juan Gamer</strong>
+          </div>
+        </div>
+        <div class="col-md-4">
+          <div class="p-4 border rounded text-center">
+            <p>"Polistation New es lo mejor que me pasó desde que descubrí el Tetris."</p>
+            <strong>- Ana Retro</strong>
+          </div>
+        </div>
+        <div class="col-md-4">
+          <div class="p-4 border rounded text-center">
+            <p>"Los precios son tan bajos que pensé que era broma. Spoiler: no lo es."</p>
+            <strong>- Pepe Gamer</strong>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer class="custom-footer py-4 text-center text-white">
+    <p>© 2025 Polistation New - Todos los derechos reservados</p>
+  </footer>
+
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>
