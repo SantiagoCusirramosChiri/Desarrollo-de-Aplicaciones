@@ -1,0 +1,36 @@
+.contenedor-especial{
+    text-align: center;
+    background-color: red;
+    color: #000000;
+    width: 600px;
+    margin: auto;
+}
+
+.mi-contenedor {
+    background-color: #092e4d;
+    padding: 20px;
+    border-radius: 10px;
+    max-width: 600px;
+    margin: 0 auto;
+    color: #e89c9c;
+    text-align: center;
+}
+
+.mi-imagen {
+    width: 100%;
+    max-width: 300px;
+    border-radius: 10px;
+    margin: 20px 0;
+}
+
+body{
+    background-color: #035096;
+}
+
+
+table, th, td, tr {
+    border: 1px solid;
+    text-align: center;
+    padding: 10px;
+    color: #fffdfd;
+}
