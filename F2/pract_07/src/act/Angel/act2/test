@@ -1,0 +1,5 @@
+se esta probando la funcion de git
+git add .
+git commit -m "comentario"
+git pull --rebase origin main
+git push origin main
