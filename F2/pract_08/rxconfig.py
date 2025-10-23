@@ -7,4 +7,3 @@ config = rx.Config(
         rx.plugins.TailwindV4Plugin(),
     ]
 )
-
