@@ -3,7 +3,6 @@ import reflex as rx
 class State(rx.State):
     mostrar_solo_pendientes: bool = False
     
-    # Datos de ejemplo para las tareas
     tareas_en_progreso: list = [
         {"titulo": "Tarea 1", "estado": "Pendiente"},
         {"titulo": "Tarea 2", "estado": "En Progreso"},
@@ -16,94 +15,109 @@ class State(rx.State):
         {"titulo": "Tarea 6", "estado": "Completada"}
     ]
     
-    def mostrar_pendientes(self):
-        self.mostrar_solo_pendientes = True
+    def toggle_filtro(self):
+        self.mostrar_solo_pendientes = not self.mostrar_solo_pendientes
     
-    def mostrar_todas(self):
-        self.mostrar_solo_pendientes = False
+    @rx.var
+    def tareas_en_progreso_filtradas(self) -> list:
+        if self.mostrar_solo_pendientes:
+            return [t for t in self.tareas_en_progreso if t["estado"] == "Pendiente"]
+        return self.tareas_en_progreso
     
-    # Propiedad computada para obtener todas las tareas
+    @rx.var
+    def tareas_completadas_filtradas(self) -> list:
+        if self.mostrar_solo_pendientes:
+            return [t for t in self.tareas_completadas if t["estado"] == "Pendiente"]
+        return self.tareas_completadas
+    
     @rx.var
     def todas_las_tareas(self) -> list:
         return self.tareas_en_progreso + self.tareas_completadas
-
-def contar_tareas_por_estado(tareas):
-    contadores = {}
-    for tarea in tareas:
-        estado = tarea["estado"]
-        if estado in contadores:
-            contadores[estado] += 1
-        else:
-            contadores[estado] = 1
-    return contadores
+    
+    @rx.var
+    def contadores(self) -> dict:
+        contadores = {"Total": len(self.todas_las_tareas)}
+        for tarea in self.todas_las_tareas:
+            estado = tarea["estado"]
+            contadores[estado] = contadores.get(estado, 0) + 1
+        return contadores
 
 def tarjeta_tarea(tarea):
     return rx.card(
         rx.text(tarea["titulo"], font_weight="bold"),
         rx.text(f"Estado: {tarea['estado']}", size="sm", color="gray"),
-        background="lightblue",
+        background={
+            "Pendiente": "orange.100",
+            "En Progreso": "blue.100", 
+            "Completada": "green.100"
+        }[tarea["estado"]],
         padding="1em",
         margin="0.5em",
         width="250px"
     )
 
 def columna_kanban(nombre, tareas):
-    # Filtra las tareas según el estado
-    if State.mostrar_solo_pendientes:
-        tareas_filtradas = [t for t in tareas if t["estado"] == "Pendiente"]
-    else:
-        tareas_filtradas = tareas
-    
     return rx.vstack(
         rx.heading(nombre, size="md"),
-        rx.foreach(tareas_filtradas, tarjeta_tarea),
+        rx.cond(
+            len(tareas) > 0,
+            rx.foreach(tareas, tarjeta_tarea),
+            rx.text("No hay tareas", color="gray", size="sm")
+        ),
         width="300px",
-        border="1px solid gray",
+        border="1px solid #e2e8f0",
         padding="1em",
         margin="0.5em",
         border_radius="8px",
-        background="white"
+        background="white",
+        min_height="400px"
     )
 
 def mostrar_contadores():
-    contadores = contar_tareas_por_estado(State.todas_las_tareas)
-    
     return rx.hstack(
+
         rx.card(
             rx.vstack(
-                rx.text("Pendientes", font_weight="bold"),
-                rx.text(contadores.get('Pendiente', 0), size="xl", font_weight="bold"),
+                rx.text("📝 Pendientes", font_weight="bold", size="sm"),
+                rx.text(State.contadores.get('Pendiente', 0), size="xl", font_weight="bold"),
             ),
             background="orange.100",
             padding="1em",
-            border_radius="8px"
+            border_radius="8px",
+            width="120px"
         ),
+
         rx.card(
             rx.vstack(
-                rx.text("En Progreso", font_weight="bold"),
-                rx.text(contadores.get('En Progreso', 0), size="xl", font_weight="bold"),
+                rx.text("🔄 En Progreso", font_weight="bold", size="sm"),
+                rx.text(State.contadores.get('En Progreso', 0), size="xl", font_weight="bold"),
             ),
             background="blue.100",
             padding="1em",
-            border_radius="8px"
+            border_radius="8px",
+            width="120px"
         ),
+
         rx.card(
             rx.vstack(
-                rx.text("Completadas", font_weight="bold"),
-                rx.text(contadores.get('Completada', 0), size="xl", font_weight="bold"),
+                rx.text("Completadas", font_weight="bold", size="sm"),
+                rx.text(State.contadores.get('Completada', 0), size="xl", font_weight="bold"),
             ),
             background="green.100",
             padding="1em",
-            border_radius="8px"
+            border_radius="8px",
+            width="120px"
         ),
+
         rx.card(
             rx.vstack(
-                rx.text("Total", font_weight="bold"),
-                rx.text(len(State.todas_las_tareas), size="xl", font_weight="bold"),
+                rx.text("Total", font_weight="bold", size="sm"),
+                rx.text(State.contadores['Total'], size="xl", font_weight="bold"),
             ),
             background="purple.100",
             padding="1em",
-            border_radius="8px"
+            border_radius="8px",
+            width="120px"
         ),
         spacing="1em",
         justify="center",
@@ -113,37 +127,29 @@ def mostrar_contadores():
 def index():
     return rx.center(
         rx.vstack(
-            rx.hstack(
-                rx.button(
-                    "Mostrar Pendientes", 
-                    on_click=State.mostrar_pendientes,
-                    color_scheme="blue",
-                    margin_right="1em"
-                ),
-                rx.button(
-                    "Mostrar Todas", 
-                    on_click=State.mostrar_todas,
-                    color_scheme="gray"
-                ),
-                justify="center",
-                margin_bottom="2em"
-            ),
+            rx.heading("Tablero Kanban con Contadores", size="lg", margin_bottom="1em"),
             
-            rx.text(
-                "Filtrando solo pendientes" if State.mostrar_solo_pendientes else "Mostrando todas las tareas",
-                font_style="italic",
-                color="gray.600",
+            rx.button(
+                "🔍 Mostrar Solo Pendientes" if not State.mostrar_solo_pendientes else "📋 Mostrar Todas",
+                on_click=State.toggle_filtro,
+                color_scheme="blue",
                 margin_bottom="1em"
             ),
             
-            rx.hstack(
-                columna_kanban("En Progreso", State.tareas_en_progreso),
-                columna_kanban("Completadas", State.tareas_completadas),
-                align="start",
-                justify="center"
+            rx.cond(
+                State.mostrar_solo_pendientes,
+                rx.text("🔍 Filtrando solo tareas PENDIENTES", color="blue", font_style="italic"),
+                rx.text("📋 Mostrando TODAS las tareas", color="green", font_style="italic")
             ),
             
-            # Mostrar contadores
+            rx.hstack(
+                columna_kanban("En Progreso", State.tareas_en_progreso_filtradas),
+                columna_kanban("Completadas", State.tareas_completadas_filtradas),
+                align="start",
+                justify="center",
+                spacing="4"
+            ),
+            
             mostrar_contadores(),
             
             width="100%",
@@ -154,4 +160,4 @@ def index():
     )
 
 app = rx.App()
-app.add_page(index)
+app.add_page(index, route="/")

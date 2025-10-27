@@ -18,7 +18,7 @@ class EstadoFormulario(rx.State):
         if not self.nombre.strip():
             self.errores["nombre"] = "El nombre es obligatorio"
         elif len(self.nombre.strip()) < 2:
-            self.errores["nombre"] = "El nombre debe tener al menos 2 caracteres"
+            self.errores["nombre"] = "El nombre debe tener 2 caracteres"
         
         if not self.email.strip():
             self.errores["email"] = "El email es obligatorio"
@@ -35,9 +35,9 @@ class EstadoFormulario(rx.State):
     def enviar_formulario(self):
         if self.validar_formulario():
             self.enviado = True
-            rx.notify("✅ Formulario enviado correctamente", color="green")
+            return rx.window_alert("Formulario enviado correctamente")
         else:
-            rx.notify("❌ Por favor corrige los errores del formulario", color="red")
+            return rx.window_alert("Errores del formulario")
     
     def limpiar_formulario(self):
         self.nombre = ""
@@ -65,7 +65,7 @@ def formulario_contacto():
             EstadoFormulario.enviado,
             rx.card(
                 rx.vstack(
-                    rx.icon("check_circle", color="green", size=32),
+                    rx.text("*-*", size="6", color="green"),
                     rx.heading("¡Formulario Enviado!", size="md", color="green"),
                     rx.text("Hemos recibido tu mensaje. Te contactaremos pronto.", size="3"),
                     rx.button(
@@ -79,74 +79,69 @@ def formulario_contacto():
                 background="green.50",
                 width="100%"
             ),
-            rx.form(
+            rx.vstack(
                 rx.vstack(
-                    rx.vstack(
-                        rx.text("Nombre", size="3", weight="bold"),
-                        rx.input(
-                            value=EstadoFormulario.nombre,
-                            on_change=EstadoFormulario.set_nombre,
-                            placeholder="Ingresa tu nombre completo",
-                            size="3"
-                        ),
-                        mostrar_error("nombre"),
-                        spacing="1",
-                        align="start",
-                        width="100%"
+                    rx.text("Nombre", size="3", weight="bold"),
+                    rx.input(
+                        value=EstadoFormulario.nombre,
+                        on_change=EstadoFormulario.set_nombre,
+                        placeholder="Ingresa tu nombre completo",
+                        size="3"
                     ),
-                    
-                    rx.vstack(
-                        rx.text("Email", size="3", weight="bold"),
-                        rx.input(
-                            value=EstadoFormulario.email,
-                            on_change=EstadoFormulario.set_email,
-                            placeholder="ejemplo@correo.com",
-                            type="email",
-                            size="3"
-                        ),
-                        mostrar_error("email"),
-                        spacing="1",
-                        align="start",
-                        width="100%"
-                    ),
-                    
-                    rx.vstack(
-                        rx.text("Mensaje", size="3", weight="bold"),
-                        rx.text_area(
-                            value=EstadoFormulario.mensaje,
-                            on_change=EstadoFormulario.set_mensaje,
-                            placeholder="Escribe tu mensaje aquí...",
-                            size="3",
-                            min_height="120px"
-                        ),
-                        mostrar_error("mensaje"),
-                        spacing="1",
-                        align="start",
-                        width="100%"
-                    ),
-                    
-                    rx.hstack(
-                        rx.button(
-                            "Enviar Mensaje",
-                            type="submit",
-                            size="3",
-                            color_scheme="green"
-                        ),
-                        rx.button(
-                            "Limpiar",
-                            on_click=EstadoFormulario.limpiar_formulario,
-                            size="3",
-                            variant="soft"
-                        ),
-                        spacing="3",
-                        justify="end",
-                        width="100%"
-                    ),
-                    
-                    spacing="5",
+                    mostrar_error("nombre"),
+                    spacing="1",
+                    align="start",
                     width="100%"
                 ),
-                on_submit=EstadoFormulario.enviar_formulario,
+                
+                rx.vstack(
+                    rx.text("Email", size="3", weight="bold"),
+                    rx.input(
+                        value=EstadoFormulario.email,
+                        on_change=EstadoFormulario.set_email,
+                        placeholder="ejemplo@correo.com",
+                        size="3"
+                    ),
+                    mostrar_error("email"),
+                    spacing="1",
+                    align="start",
+                    width="100%"
+                ),
+                
+                rx.vstack(
+                    rx.text("Mensaje", size="3", weight="bold"),
+                    rx.text_area(
+                        value=EstadoFormulario.mensaje,
+                        on_change=EstadoFormulario.set_mensaje,
+                        placeholder="Escribe tu mensaje aquí...",
+                        size="3",
+                        min_height="120px"
+                    ),
+                    mostrar_error("mensaje"),
+                    spacing="1",
+                    align="start",
+                    width="100%"
+                ),
+                
+                rx.hstack(
+                    rx.button(
+                        "Enviar Mensaje",
+                        on_click=EstadoFormulario.enviar_formulario,
+                        size="3",
+                        color_scheme="green"
+                    ),
+                    rx.button(
+                        "Limpiar",
+                        on_click=EstadoFormulario.limpiar_formulario,
+                        size="3",
+                        variant="soft"
+                    ),
+                    spacing="3",
+                    justify="end",
+                    width="100%"
+                ),
+                
+                spacing="5",
                 width="100%"
             )
         ),
@@ -169,4 +164,4 @@ def index():
     )
 
 app = rx.App()
-app.add_page(index)
+app.add_page(index, route="/")

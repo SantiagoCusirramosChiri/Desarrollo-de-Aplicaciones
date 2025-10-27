@@ -9,23 +9,23 @@ class EstadoTareas(rx.State):
             self.tareas.append(self.nueva_tarea.strip())
             self.nueva_tarea = ""
     
-    def eliminar_tarea(self, index: int):
-        if 0 <= index < len(self.tareas):
-            self.tareas.pop(index)
+    def eliminar_tarea(self, tarea: str):
+        if tarea in self.tareas:
+            self.tareas.remove(tarea)
 
 def lista_tareas():
     return rx.vstack(
         rx.heading("Lista de Tareas", size="lg"),
         rx.cond(
-            EstadoTareas.tareas.length() > 0,
+            len(EstadoTareas.tareas) > 0,
             rx.vstack(
                 rx.foreach(
                     EstadoTareas.tareas,
-                    lambda tarea, index: rx.hstack(
+                    lambda tarea: rx.hstack(
                         rx.text(tarea, size="4"),
                         rx.button(
                             "Eliminar",
-                            on_click=lambda: EstadoTareas.eliminar_tarea(index),
+                            on_click=lambda: EstadoTareas.eliminar_tarea(tarea),
                             size="2",
                             color_scheme="red"
                         ),
@@ -80,4 +80,4 @@ def index():
     )
 
 app = rx.App()
-app.add_page(index)
+app.add_page(index, route="/")

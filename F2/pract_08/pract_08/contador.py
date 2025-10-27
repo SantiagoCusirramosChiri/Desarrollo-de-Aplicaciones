@@ -18,7 +18,7 @@ def contador():
             size="3"
         ),
         rx.text(
-            EstadoContador.conteo, 
+            EstadoContador.conteo,
             width="100px",
             text_align="center",
             font_size="24px",
@@ -49,4 +49,4 @@ def index():
     )
 
 app = rx.App()
-app.add_page(index)
+app.add_page(index, route="/")
