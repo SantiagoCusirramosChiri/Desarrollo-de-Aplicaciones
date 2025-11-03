@@ -1,0 +1,44 @@
+import express from 'express';
+import cors from 'cors';
+import mysql from 'mysql2';
+
+const app = express();
+app.use(cors());
+app.use(express.json());
+
+const db = mysql.createConnection({
+  host: 'localhost',
+  user: 'root',
+  password: '',
+  database: 'pasajes_db'
+});
+
+app.post('/api/usuarios', (req, res) => {
+  const { nombre, fechaNacimiento } = req.body;
+  const edad = calcularEdad(fechaNacimiento);
+  let precio = calcularPrecio(edad);
+
+  db.query(
+    'INSERT INTO usuarios (nombre, fechaNacimiento, edad, precio) VALUES (?, ?, ?, ?)',
+    [nombre, fechaNacimiento, edad, precio],
+    (err, result) => {
+      if (err) return res.status(500).send(err);
+      res.json({ mensaje: 'Usuario registrado correctamente', edad, precio });
+    }
+  );
+});
+
+function calcularEdad(fechaNac) {
+  const nacimiento = new Date(fechaNac);
+  const hoy = new Date();
+  return hoy.getFullYear() - nacimiento.getFullYear();
+}
+
+function calcularPrecio(edad) {
+  const base = 100;
+  if (edad < 2) return 0;
+  if (edad <= 17) return base * 0.75;
+  return base;
+}
+
+app.listen(4000, () => console.log('Servidor corriendo en http://localhost:4000'));
