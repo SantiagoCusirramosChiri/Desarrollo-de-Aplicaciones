@@ -23,8 +23,8 @@ const pool = mysql.createPool({
 // Configuración dinámica de almacenamiento según especialidad
 const storage = multer.diskStorage({
   destination: function (req, file, cb) {
-    const especialidad = req.body.especialidad;
-    const dir = `uploads/${especialidad}`;
+    // Guardar temporalmente en uploads, luego moveremos al lugar correcto
+    const dir = 'uploads';
     if (!fs.existsSync(dir)) fs.mkdirSync(dir, { recursive: true });
     cb(null, dir);
   },
@@ -38,13 +38,32 @@ const upload = multer({ storage });
 // 1. Endpoint para subir archivo
 app.post('/api/upload', upload.single('archivo'), async (req, res) => {
   const { especialidad } = req.body;
-  const nombre = req.file.filename;
-  const ruta = req.file.path;
+  
+  if (!especialidad) {
+    return res.status(400).json({ message: 'Especialidad no especificada' });
+  }
 
+  const especialidadNormalizada = especialidad.toLowerCase();
+  const dirEspecialidad = `uploads/${especialidadNormalizada}`;
+  
+  // Crear carpeta de especialidad si no existe
+  if (!fs.existsSync(dirEspecialidad)) {
+    fs.mkdirSync(dirEspecialidad, { recursive: true });
+  }
+
+  // Mover archivo a la carpeta correcta
+  const oldPath = req.file.path;
+  const newPath = path.join(dirEspecialidad, req.file.filename);
+  
   try {
+    fs.renameSync(oldPath, newPath);
+    
+    const nombre = req.file.filename;
+    const ruta = newPath;
+
     const [result] = await pool.query(
       'INSERT INTO archivos (nombre, especialidad, ruta) VALUES (?, ?, ?)',
-      [nombre, especialidad, ruta]
+      [nombre, especialidadNormalizada, ruta]
     );
     res.json({ message: 'Archivo subido correctamente', id: result.insertId });
   } catch (error) {
@@ -56,10 +75,12 @@ app.post('/api/upload', upload.single('archivo'), async (req, res) => {
 // 2. Listar archivos por especialidad
 app.get('/api/archivos/:especialidad', async (req, res) => {
   const { especialidad } = req.params;
+  const especialidadNormalizada = especialidad.toLowerCase();
+  
   try {
     const [rows] = await pool.query(
       'SELECT * FROM archivos WHERE especialidad = ?',
-      [especialidad]
+      [especialidadNormalizada]
     );
     res.json(rows);
   } catch (error) {
@@ -84,6 +105,10 @@ app.get('/api/ver/:id', async (req, res) => {
 });
 
 // Iniciar servidor
+app.get('/', (req, res) => {
+  res.send('API de Archivos funcionando correctamente!');
+});
+
 app.listen(PORT, () => {
   console.log(`Servidor backend corriendo en http://localhost:${PORT}`);
 });
