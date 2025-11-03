@@ -1,0 +1,7 @@
+CREATE TABLE archivos (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    nombre VARCHAR(255),
+    especialidad VARCHAR(100),
+    ruta VARCHAR(255),
+    fecha TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+);
