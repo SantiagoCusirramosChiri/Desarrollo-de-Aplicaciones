@@ -12,7 +12,6 @@ app.use(cors());
 app.use(express.json());
 app.use('/uploads', express.static(path.join(__dirname, 'uploads')));
 
-// Pool de conexión MySQL
 const pool = mysql.createPool({
   host: 'localhost',
   user: 'root',
@@ -20,10 +19,8 @@ const pool = mysql.createPool({
   database: 'archivos_carrera'
 });
 
-// Configuración dinámica de almacenamiento según especialidad
 const storage = multer.diskStorage({
   destination: function (req, file, cb) {
-    // Guardar temporalmente en uploads, luego moveremos al lugar correcto
     const dir = 'uploads';
     if (!fs.existsSync(dir)) fs.mkdirSync(dir, { recursive: true });
     cb(null, dir);
@@ -35,7 +32,6 @@ const storage = multer.diskStorage({
 
 const upload = multer({ storage });
 
-// 1. Endpoint para subir archivo
 app.post('/api/upload', upload.single('archivo'), async (req, res) => {
   const { especialidad } = req.body;
   
@@ -46,12 +42,10 @@ app.post('/api/upload', upload.single('archivo'), async (req, res) => {
   const especialidadNormalizada = especialidad.toLowerCase();
   const dirEspecialidad = `uploads/${especialidadNormalizada}`;
   
-  // Crear carpeta de especialidad si no existe
   if (!fs.existsSync(dirEspecialidad)) {
     fs.mkdirSync(dirEspecialidad, { recursive: true });
   }
 
-  // Mover archivo a la carpeta correcta
   const oldPath = req.file.path;
   const newPath = path.join(dirEspecialidad, req.file.filename);
   
@@ -72,7 +66,6 @@ app.post('/api/upload', upload.single('archivo'), async (req, res) => {
   }
 });
 
-// 2. Listar archivos por especialidad
 app.get('/api/archivos/:especialidad', async (req, res) => {
   const { especialidad } = req.params;
   const especialidadNormalizada = especialidad.toLowerCase();
@@ -89,7 +82,6 @@ app.get('/api/archivos/:especialidad', async (req, res) => {
   }
 });
 
-// 3. Ver contenido de un archivo
 app.get('/api/ver/:id', async (req, res) => {
   const { id } = req.params;
   try {
@@ -104,7 +96,6 @@ app.get('/api/ver/:id', async (req, res) => {
   }
 });
 
-// Iniciar servidor
 app.get('/', (req, res) => {
   res.send('API de Archivos funcionando correctamente!');
 });
