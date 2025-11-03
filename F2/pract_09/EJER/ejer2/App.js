@@ -7,7 +7,6 @@ function App() {
   const [archivos, setArchivos] = useState([]);
   const [mensaje, setMensaje] = useState('');
 
-  // Cargar archivos al cambiar la especialidad
   useEffect(() => {
     fetch(`http://localhost:3001/api/archivos/${especialidad}`)
       .then(res => res.json())
@@ -15,7 +14,6 @@ function App() {
       .catch(err => console.error(err));
   }, [especialidad]);
 
-  // Subir archivo
   const handleUpload = async (e) => {
     e.preventDefault();
     if (!archivo) return;
@@ -32,7 +30,6 @@ function App() {
       const data = await res.json();
       setMensaje(data.message);
       setArchivo(null);
-      // recargar lista
       fetch(`http://localhost:3001/api/archivos/${especialidad}`)
         .then(res => res.json())
         .then(data => setArchivos(data));
