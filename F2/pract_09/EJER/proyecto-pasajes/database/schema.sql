@@ -1,0 +1,10 @@
+CREATE DATABASE IF NOT EXISTS pasajes_db;
+USE pasajes_db;
+
+CREATE TABLE IF NOT EXISTS usuarios (
+  id INT AUTO_INCREMENT PRIMARY KEY,
+  nombre VARCHAR(100) NOT NULL,
+  fechaNacimiento DATE NOT NULL,
+  edad INT NOT NULL,
+  precio DECIMAL(10,2) NOT NULL
+);
