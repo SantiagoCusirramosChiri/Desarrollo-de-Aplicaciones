@@ -1,51 +1,93 @@
 import express from 'express';
 import cors from 'cors';
-import mysql from 'mysql2';
+import mysql from 'mysql2/promise';
 
 const app = express();
 app.use(cors());
 app.use(express.json());
 
-const db = mysql.createConnection({
+const pool = mysql.createPool({
   host: 'localhost',
   user: 'root',
   password: 'santi',
-  database: 'pasajes_db'
+  database: 'pasajes_db',
+  waitForConnections: true,
+  connectionLimit: 10,
+  queueLimit: 0
 });
 
+app.post('/api/usuarios', async (req, res) => {
+  const {
+    nombre_completo,
+    direccion,
+    email,
+    contraseña,
+    fecha_nacimiento,
+    sexo,
+    temas_interes,
+    aficiones
+  } = req.body;
 
-app.post('/api/usuarios', (req, res) => {
-  const { nombre, fechaNacimiento } = req.body;
-  const edad = calcularEdad(fechaNacimiento);
-  let precio = calcularPrecio(edad);
+  const connection = await pool.getConnection();
+  try {
+    await connection.beginTransaction();
 
-  db.query(
-    'INSERT INTO usuarios (nombre, fechaNacimiento, edad, precio) VALUES (?, ?, ?, ?)',
-    [nombre, fechaNacimiento, edad, precio],
-    (err, result) => {
-      if (err) return res.status(500).send(err);
-      res.json({ mensaje: 'Usuario registrado correctamente', edad, precio });
+    const [result] = await connection.query(
+      `INSERT INTO usuarios (nombre_completo, direccion, email, contraseña, fecha_nacimiento, sexo)
+       VALUES (?, ?, ?, ?, ?, ?)`,
+      [nombre_completo, direccion, email, contraseña, fecha_nacimiento, sexo]
+    );
+
+    const id_usuario = result.insertId;
+
+    if (Array.isArray(temas_interes)) {
+      for (const id_interes of temas_interes) {
+        await connection.query(
+          `INSERT INTO usuario_intereses (id_usuario, id_interes) VALUES (?, ?)`,
+          [id_usuario, id_interes]
+        );
+      }
     }
-  );
+
+    if (Array.isArray(aficiones)) {
+      for (const id_interes of aficiones) {
+        await connection.query(
+          `INSERT INTO usuario_intereses (id_usuario, id_interes) VALUES (?, ?)`,
+          [id_usuario, id_interes]
+        );
+      }
+    }
+
+    await connection.commit();
+
+    res.json({
+      mensaje: '✅ Usuario registrado correctamente',
+      id_usuario
+    });
+  } catch (error) {
+    await connection.rollback();
+    console.error('❌ Error al registrar usuario:', error);
+    res.status(500).json({ mensaje: 'Error al registrar usuario', error });
+  } finally {
+    connection.release();
+  }
 });
 
-function calcularEdad(fechaNac) {
-  const nacimiento = new Date(fechaNac);
-  const hoy = new Date();
-  return hoy.getFullYear() - nacimiento.getFullYear();
-}
 
-function calcularPrecio(edad) {
-  const base = 100;
-  if (edad < 2) return 0;
-  if (edad <= 17) return base * 0.75;
-  return base;
-}
+app.get('/api/intereses', async (req, res) => {
+  try {
+    const [rows] = await pool.query(
+      `SELECT id_interes, nombre_interes, categoria FROM intereses`
+    );
+    res.json(rows);
+  } catch (error) {
+    console.error('❌ Error al obtener intereses:', error);
+    res.status(500).json({ mensaje: 'Error al obtener los intereses' });
+  }
+});
 
-// matriz - -- IGNORE --- xD - osea que tenia que ver esto? no entendi xd
 app.get('/api/matriz/:n', (req, res) => {
   const n = parseInt(req.params.n);
-
   if (isNaN(n) || n < 2) {
     return res.status(400).json({ error: 'El tamaño debe ser un número >= 2' });
   }
@@ -55,7 +97,6 @@ app.get('/api/matriz/:n', (req, res) => {
   );
 
   const esPerfecta = verificarMatrizPerfecta(matriz);
-
   res.json({ matriz, esPerfecta });
 });
 
@@ -84,4 +125,5 @@ function verificarMatrizPerfecta(matriz) {
   return diag1 === sumaObjetivo && diag2 === sumaObjetivo;
 }
 
-app.listen(4000, () => console.log('Servidor corriendo en http://localhost:4000'));
+const PORT = 4000;
+app.listen(PORT, () => console.log(`🌐 Servidor corriendo en http://localhost:${PORT}`));

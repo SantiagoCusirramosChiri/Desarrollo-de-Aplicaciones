@@ -1,10 +1,10 @@
-import Registro from "./Registro";
 import Matriz from "./Matriz";
+import RegistroUsuario from "./RegistroUsuario";
 
 function App() {
   return (
     <div>
-      <Registro />
+      <RegistroUsuario />
       <hr style={{ margin: "3rem 0" }} />
       <Matriz />
     </div>
