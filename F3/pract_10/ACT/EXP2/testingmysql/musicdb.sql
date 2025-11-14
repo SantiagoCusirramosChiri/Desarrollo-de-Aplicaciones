@@ -1,0 +1,10 @@
+DROP DATABASE IF EXISTS musicdb;
+CREATE DATABASE musicdb CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;
+USE musicdb;
+
+CREATE TABLE Albums (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    titulo VARCHAR(100) NOT NULL,
+    lanzado DATE NOT NULL,
+    genero VARCHAR(100) NOT NULL
+);
