@@ -1,0 +1,220 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>API Node.js + MongoDB - UCSM</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        
+        body {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 20px;
+        }
+        
+        .container {
+            background: white;
+            border-radius: 20px;
+            box-shadow: 0 20px 60px rgba(0,0,0,0.3);
+            padding: 40px;
+            max-width: 800px;
+            width: 100%;
+        }
+        
+        header {
+            text-align: center;
+            margin-bottom: 40px;
+        }
+        
+        h1 {
+            color: #333;
+            font-size: 2.5rem;
+            margin-bottom: 10px;
+            background: linear-gradient(to right, #667eea, #764ba2);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+        
+        .subtitle {
+            color: #666;
+            font-size: 1.2rem;
+        }
+        
+        .university {
+            color: #764ba2;
+            font-weight: bold;
+            font-size: 1.1rem;
+            margin-top: 5px;
+        }
+        
+        .endpoints {
+            background: #f8f9fa;
+            border-radius: 15px;
+            padding: 25px;
+            margin-bottom: 30px;
+        }
+        
+        .endpoint {
+            background: white;
+            border-left: 4px solid #667eea;
+            padding: 15px;
+            margin-bottom: 15px;
+            border-radius: 8px;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.05);
+        }
+        
+        .method {
+            display: inline-block;
+            padding: 5px 15px;
+            border-radius: 20px;
+            font-weight: bold;
+            font-size: 0.9rem;
+            margin-right: 10px;
+        }
+        
+        .get { background: #4CAF50; color: white; }
+        .post { background: #2196F3; color: white; }
+        .put { background: #FF9800; color: white; }
+        .delete { background: #f44336; color: white; }
+        
+        .url {
+            font-family: 'Courier New', monospace;
+            background: #f1f1f1;
+            padding: 8px 12px;
+            border-radius: 6px;
+            margin: 10px 0;
+            display: block;
+            overflow-x: auto;
+        }
+        
+        .instructions {
+            background: #e3f2fd;
+            border-radius: 10px;
+            padding: 20px;
+            margin-top: 20px;
+        }
+        
+        .instructions h3 {
+            color: #1976d2;
+            margin-bottom: 10px;
+        }
+        
+        .instructions ol {
+            padding-left: 20px;
+        }
+        
+        .instructions li {
+            margin-bottom: 10px;
+        }
+        
+        .status {
+            text-align: center;
+            padding: 15px;
+            border-radius: 10px;
+            margin-top: 20px;
+            font-weight: bold;
+        }
+        
+        .online {
+            background: #d4edda;
+            color: #155724;
+            border: 1px solid #c3e6cb;
+        }
+        
+        footer {
+            text-align: center;
+            margin-top: 30px;
+            color: #666;
+            font-size: 0.9rem;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>API Node.js + MongoDB</h1>
+            <p class="subtitle">Laboratorio de Desarrollo de Aplicaciones</p>
+            <p class="university">Universidad Católica de Santa María</p>
+        </header>
+        
+        <div class="status online" id="status">
+            ✅ Servidor en ejecución - MongoDB Conectado
+        </div>
+        
+        <div class="endpoints">
+            <h2>Endpoints Disponibles</h2>
+            
+            <div class="endpoint">
+                <span class="method get">GET</span>
+                <strong>Listar todos los productos</strong>
+                <span class="url">http://localhost:3000/api/products</span>
+            </div>
+            
+            <div class="endpoint">
+                <span class="method post">POST</span>
+                <strong>Crear nuevo producto</strong>
+                <span class="url">http://localhost:3000/api/products</span>
+                <p><strong>Body (JSON):</strong> { "name": "string", "amount": number, "description": "string" }</p>
+            </div>
+            
+            <div class="endpoint">
+                <span class="method put">PUT</span>
+                <strong>Actualizar producto por ID</strong>
+                <span class="url">http://localhost:3000/api/products/:id</span>
+            </div>
+            
+            <div class="endpoint">
+                <span class="method delete">DELETE</span>
+                <strong>Eliminar producto por ID</strong>
+                <span class="url">http://localhost:3000/api/products/:id</span>
+            </div>
+        </div>
+        
+        <div class="instructions">
+            <h3>📚 Instrucciones para usar con Postman:</h3>
+            <ol>
+                <li>Abrir Postman</li>
+                <li>Seleccionar método (GET, POST, PUT, DELETE)</li>
+                <li>Ingresar la URL correspondiente</li>
+                <li>Para POST y PUT: Ir a Body → raw → JSON</li>
+                <li>Enviar la solicitud</li>
+            </ol>
+        </div>
+        
+        <footer>
+            <p>Laboratorio Sesión N°12 - MongoDB y NodeJS</p>
+            <p>Ingeniería de Sistemas - Desarrollo de Aplicaciones</p>
+        </footer>
+    </div>
+
+    <script>
+        // Verificar estado del servidor
+        fetch('/api/products')
+            .then(response => {
+                const status = document.getElementById('status');
+                if (response.ok) {
+                    status.innerHTML = '✅ API funcionando correctamente';
+                    status.className = 'status online';
+                } else {
+                    status.innerHTML = '⚠️ API presenta problemas';
+                    status.style.background = '#fff3cd';
+                    status.style.color = '#856404';
+                }
+            })
+            .catch(error => {
+                document.getElementById('status').innerHTML = '❌ No se puede conectar al servidor';
+                document.getElementById('status').style.background = '#f8d7da';
+                document.getElementById('status').style.color = '#721c24';
+            });
+    </script>
+</body>
+</html>
