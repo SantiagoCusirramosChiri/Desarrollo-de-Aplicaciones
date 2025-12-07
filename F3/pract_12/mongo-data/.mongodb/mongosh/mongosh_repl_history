@@ -1,0 +1,120 @@
+show dbs
+db.alumnos.deleteMany({ Edad: { $lt: 24 } })
+db.alumnos.deleteMany({ Edad: { $lt: 20 } })
+db.alumnos.deleteMany({ Distrito: "Cerro Colorado" })
+db.alumnos.deleteOne({ DNI: "77889900" })
+)
+  { $set: { Celular: "999000000" } }
+  { Nombre: "Ana Torres" },
+db.alumnos.updateOne(
+)
+  { $inc: { Edad: 1 } }
+  {},
+db.alumnos.updateMany(
+)
+  { $set: { Distrito: "Cercado" } }
+  { Nombre: "Carlos Ramírez" },
+db.alumnos.updateOne(
+db.alumnos.findOne({ DNI: "87654321" })
+db.alumnos.find({ Edad: { $gt: 21 } })
+db.alumnos.find({ Distrito: "Yanahuara" })
+])
+  }
+    Celular: "999000111"
+    Distrito: "Cerro Colorado",
+    Edad: 23,
+    Nombre: "Camila Vega",
+    DNI: "88990011",
+  {
+  },
+    Celular: "999888999"
+    Distrito: "Cayma",
+    Edad: 26,
+    Nombre: "Jorge Silva",
+    DNI: "77889900",
+  {
+  },
+    Celular: "999666777"
+    Distrito: "Sachaca",
+    Edad: 19,
+    Nombre: "Valeria Ríos",
+    DNI: "66778899",
+  {
+  },
+    Celular: "999444555"
+    Distrito: "Cercado",
+    Edad: 25,
+    Nombre: "Diego Castro",
+    DNI: "55667788",
+  {
+  },
+    Celular: "999222333"
+    Distrito: "Yanahuara",
+    Edad: 22,
+    Nombre: "Sofía Mendoza",
+    DNI: "44556677",
+  {
+  },
+    Celular: "999777888"
+    Distrito: "Cerro Colorado",
+    Edad: 20,
+    Nombre: "Luis Fernández",
+    DNI: "33445566",
+  {
+  },
+    Celular: "999555666"
+    Distrito: "Cayma",
+    Edad: 24,
+    Nombre: "Ana Torres",
+    DNI: "22334455",
+  {
+db.alumnos.insertMany([
+])
+  }
+    Celular: "999333444"
+    Distrito: "Sachaca",
+    Edad: 21,
+    Nombre: "Carlos Ramírez",
+    DNI: "11223344",
+  {
+  },
+    Celular: "999111222"
+    Distrito: "Cercado",
+    Edad: 23,
+    Nombre: "María López",
+    DNI: "87654321",
+  {
+  },
+    Celular: "999888777"
+    Distrito: "Yanahuara",
+    Edad: 22,
+    Nombre: "Juan Pérez",
+    DNI: "12345678",
+  {
+db.alumnos.insertMany([
+use ucsm
+use admin
+])
+  }
+    Celular: "999333444"
+    Distrito: "Sachaca",
+    Edad: 21,
+    Nombre: "Carlos Ramírez",
+    DNI: "11223344",
+  {
+  },
+    Celular: "999111222"
+    Distrito: "Cercado",
+    Edad: 23,
+    Nombre: "María López",
+    DNI: "87654321",
+  {
+  },
+    Celular: "999888777"
+    Distrito: "Yanahuara",
+    Edad: 22,
+    Nombre: "Juan Pérez",
+    DNI: "12345678",
+  {
+db.alumnos.insertMany([
+use ucsm
